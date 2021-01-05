@@ -23,7 +23,7 @@ import javax.swing.JTable;
 
 
 public class ControllerResponsi {
-	int mastervariable=0;
+	int mastervariable=0;//HE IS THE CHOSEN ONE!!!
 	
 	ModelResponsi modelresponsi;
 	ViewResponsi viewresponsi;
@@ -53,7 +53,7 @@ public class ControllerResponsi {
         		boolean valid = false;
         		String username = viewresponsi.getuname();
         		String password = viewresponsi.getpass();
-        		if(viewresponsi.getuname().equals("")||viewresponsi.getpass().equals(""))JOptionPane.showMessageDialog(null, "Jangan dikosongin GBLK!!!");
+        		if(viewresponsi.getuname().equals("")||viewresponsi.getpass().equals(""))JOptionPane.showMessageDialog(null, "Field Empty");
         		else {
         			String dataAnggota[][] = modelresponsi.readaccount();
             		for(int i =0 ; i<modelresponsi.getBanyakData2();i++) {
@@ -70,7 +70,7 @@ public class ControllerResponsi {
             			viewresponsi.paneltitle.setVisible(true);
             			viewresponsi.panellogin.setVisible(false);
             		}
-            		else JOptionPane.showMessageDialog(null, "SALAH BEGO!");
+            		else JOptionPane.showMessageDialog(null, "Wrong Password or Username");
         		}
         		
         	}
@@ -89,8 +89,8 @@ public class ControllerResponsi {
         			System.out.print(dataAnggota[i][0]+" "+viewresponsi.getuname());
         			
         		}
-        		if(viewresponsi.getuname().equals("")||viewresponsi.getpass().equals(""))JOptionPane.showMessageDialog(null, "Jangan dikosongin GBLK!!!");
-        		else if(valid==false) JOptionPane.showMessageDialog(null, "Pasaran nama lu anying");
+        		if(viewresponsi.getuname().equals("")||viewresponsi.getpass().equals(""))JOptionPane.showMessageDialog(null, "Field Empty");
+        		else if(valid==false) JOptionPane.showMessageDialog(null, "Username Taken");
         		else modelresponsi.daftar(username, password);
         	}
         });
@@ -124,7 +124,7 @@ public class ControllerResponsi {
                 String idbuku = viewresponsi.getIdbuku();
                 String judulbuku = viewresponsi.getJudulbuku();
                 if(valid==true)modelresponsi.create(idanggota, nama, idbuku, judulbuku);
-                else JOptionPane.showMessageDialog(null, "Jangan ada yang dikosongin GBLK!!!");
+                else JOptionPane.showMessageDialog(null, "Field Empty");
                 
                 String dataMahasiswa[][] = modelresponsi.read();
                 viewresponsi.tabel.setModel(new JTable(dataMahasiswa, viewresponsi.namaKolom).getModel());
@@ -194,10 +194,7 @@ public class ControllerResponsi {
                         viewresponsi.tabel.setModel(new JTable(dataAnggota, viewresponsi.namaKolom).getModel());
                         viewresponsi.jbhapus.setEnabled(false);
                         viewresponsi.jbedit.setEnabled(false);
-                        //WTF?!?!?!?!?
-                        //Look, it kept looping! I don't know what's going on!!! Sometimes it works sometimes it doesn't
-                        //THIS PIECE OF CODE IS BULLSHIT!!!!!!!
-                        //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                        //
                         
                 	}
                 });
@@ -238,7 +235,7 @@ public class ControllerResponsi {
                 
                 
                 if(valid==true)modelresponsi.update(idanggota, nama, idbuku, judulbuku);
-                else JOptionPane.showMessageDialog(null, "Jangan ada yang dikosongin GBLK!!!");
+                else JOptionPane.showMessageDialog(null, "Field Empty");
                 String dataAnggota[][] = modelresponsi.read();
                 viewresponsi.tabel.setModel(new JTable(dataAnggota, viewresponsi.namaKolom).getModel());
                 viewresponsi.paneledit.setVisible(false);
