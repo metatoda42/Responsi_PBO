@@ -16,6 +16,7 @@ public class ViewResponsi extends JFrame {
     JPanel paneltambah = new JPanel();
     JPanel paneltampil = new JPanel();
     JPanel paneledit = new JPanel();
+    JPanel panelabout = new JPanel();
     
     
     
@@ -27,7 +28,8 @@ public class ViewResponsi extends JFrame {
     JButton jblogin = new JButton("Login");
     JButton jbdaftar = new JButton("Daftar");
   
-    
+    //ABOUT declaration
+    JTextPane jlabout = new JTextPane();
     
     //HOME PAGE declaration
     JButton jbhome = new JButton("Home");
@@ -186,6 +188,16 @@ public class ViewResponsi extends JFrame {
         jltitle.setBounds(32, 68, 286, 150);
         paneltitle.add(jltitle);
         paneltitle.setBounds(123, 0, 351, 411);
+        
+        //JUDUL MENU
+        
+        getContentPane().add(panelabout);
+        panelabout.setLayout(null);
+        jlabout.setText("Pandu Dhaulagiri - 124190044\r\n\r\nSubscribe to Hololive, Descend Down the Rabbit Hole.\r\n\r\nWe have Idols, War Criminals, Drug Dealers, Apex Predators, Eldritch Monsters, \r\nEntire Circus, and Haachama.\r\n\r\nSee you there!");
+        jlabout.setEditable(false);
+        jlabout.setBounds(32, 68, 286, 150);
+        panelabout.add(jlabout);
+        panelabout.setBounds(123, 0, 351, 411);
         
         
         

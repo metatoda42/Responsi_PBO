@@ -22,6 +22,7 @@ public class ControllerResponsi {
         viewresponsi.paneltambah.setVisible(false);
         viewresponsi.paneltampil.setVisible(false);
         viewresponsi.paneledit.setVisible(false);
+        viewresponsi.panelabout.setVisible(false);
         
         if (modelresponsi.getBanyakData() != 0) {
             String data[][] = modelresponsi.read();
@@ -100,6 +101,7 @@ public class ControllerResponsi {
         		viewresponsi.paneltitle.setVisible(true);
         		viewresponsi.paneltambah.setVisible(false);
         		viewresponsi.paneltampil.setVisible(false);
+        		viewresponsi.panelabout.setVisible(false);
         	}
         });
         
@@ -108,6 +110,7 @@ public class ControllerResponsi {
         		viewresponsi.paneltitle.setVisible(false);
         		viewresponsi.paneltambah.setVisible(true);
         		viewresponsi.paneltampil.setVisible(false);
+        		viewresponsi.panelabout.setVisible(false);
         	}
         });
         
@@ -116,6 +119,16 @@ public class ControllerResponsi {
         		viewresponsi.paneltitle.setVisible(false);
         		viewresponsi.paneltambah.setVisible(false);
         		viewresponsi.paneltampil.setVisible(true);
+        		viewresponsi.panelabout.setVisible(false);
+        	}
+        });
+        
+        viewresponsi.jbaboutus.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		viewresponsi.paneltitle.setVisible(false);
+        		viewresponsi.paneltambah.setVisible(false);
+        		viewresponsi.paneltampil.setVisible(false);
+        		viewresponsi.panelabout.setVisible(true);
         	}
         });
         
@@ -130,22 +143,23 @@ public class ControllerResponsi {
             public void mouseClicked(MouseEvent e) {
                 super.mousePressed(e);
                 int baris = viewresponsi.tabel.getSelectedRow();
-
+                
                 final String dataterpilih = viewresponsi.tabel.getValueAt(baris, 0).toString();
 
                 System.out.println(dataterpilih);
 
                 viewresponsi.jbhapus.setEnabled(true);
                 viewresponsi.jbedit.setEnabled(true);
-                
+                System.out.print(dataterpilih);
                 viewresponsi.jbhapus.addActionListener(new ActionListener() {
                 	public void actionPerformed(ActionEvent e) {
-       
-                        modelresponsi.delete(dataterpilih);
+            			modelresponsi.delete(dataterpilih);
                         String dataAnggota[][] = modelresponsi.read();
                         viewresponsi.tabel.setModel(new JTable(dataAnggota, viewresponsi.namaKolom).getModel());
                         viewresponsi.jbhapus.setEnabled(false);
                         viewresponsi.jbedit.setEnabled(false);
+                        //WTF?!?!?!?!?
+                        //Look, 
                 	}
                 });
                 

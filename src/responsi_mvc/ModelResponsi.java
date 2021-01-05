@@ -215,6 +215,7 @@ public class ModelResponsi {
             statement.executeUpdate(query);
             JOptionPane.showMessageDialog(null, "Berhasil Dihapus");
             
+            
         }catch(SQLException sql) {
             System.out.println(sql.getMessage());
         }
