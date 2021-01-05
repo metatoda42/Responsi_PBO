@@ -1,3 +1,13 @@
+/*
+ * Yep
+ * Everything is going as I calculated!!!
+ * But boy, am I bad at Math...
+ * 
+ *
+ * 
+ * */
+
+
 package responsi_mvc;
 
 import java.awt.event.ActionEvent;
@@ -165,7 +175,7 @@ public class ControllerResponsi {
                 
                 viewresponsi.jbedit.addActionListener(new ActionListener() {
                 	public void actionPerformed(ActionEvent e) {
-                		//Haus mau minum+ngopi, gua yang 10 menit kedepan, bikin panel baru buat edit data peminjam
+                		//Haus, mau ngopi, gua yang 10 menit kedepan, bikin panel baru buat edit data peminjam
                 		//Masukan kedalam panel tampil jangan bareng yang lain 
                 		//Mager masukin kedalem panel tampil, udah pisahin aja biar gak ribet
                 		viewresponsi.jteditidanggota.setText(dataterpilih);

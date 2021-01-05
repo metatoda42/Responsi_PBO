@@ -1,5 +1,10 @@
-/*So you thought
+/*So you thought, it was a quote?
  * 
+ * But it was I! 
+ * 
+ * The Spanish Inquisition
+ * 
+ * Meme aside, why are you reading this?
  * 
  * 
  * */
