@@ -20,7 +20,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
 
+
+
 public class ControllerResponsi {
+	int mastervariable=0;
+	
 	ModelResponsi modelresponsi;
 	ViewResponsi viewresponsi;
 
@@ -49,29 +53,45 @@ public class ControllerResponsi {
         		boolean valid = false;
         		String username = viewresponsi.getuname();
         		String password = viewresponsi.getpass();
-        		String dataAnggota[][] = modelresponsi.readaccount();
-        		for(int i =0 ; i<modelresponsi.getBanyakData2();i++) {
-        			if(dataAnggota[i][0].equals(username)) {
-        				if(dataAnggota[i][1].equals(password)) {
-        					valid=true;
-        				}
-        			}
-        			System.out.print(dataAnggota[i][0]+" "+viewresponsi.getuname());
-        			
+        		if(viewresponsi.getuname().equals("")||viewresponsi.getpass().equals(""))JOptionPane.showMessageDialog(null, "Jangan dikosongin GBLK!!!");
+        		else {
+        			String dataAnggota[][] = modelresponsi.readaccount();
+            		for(int i =0 ; i<modelresponsi.getBanyakData2();i++) {
+            			if(dataAnggota[i][0].equals(username)) {
+            				if(dataAnggota[i][1].equals(password)) {
+            					valid=true;
+            				}
+            			}
+            			System.out.print(dataAnggota[i][0]+" "+viewresponsi.getuname());
+            			
+            		}
+            		if(valid == true) {
+            			viewresponsi.panelhome.setVisible(true);
+            			viewresponsi.paneltitle.setVisible(true);
+            			viewresponsi.panellogin.setVisible(false);
+            		}
+            		else JOptionPane.showMessageDialog(null, "SALAH BEGO!");
         		}
-        		if(valid == true) {
-        			viewresponsi.panelhome.setVisible(true);
-        			viewresponsi.paneltitle.setVisible(true);
-        			viewresponsi.panellogin.setVisible(false);
-        		}
+        		
         	}
         });
         
         viewresponsi.jbdaftar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
+        		boolean valid =true;
         		String username = viewresponsi.getuname();
         		String password = viewresponsi.getpass();
-        		modelresponsi.daftar(username, password);
+        		String dataAnggota[][] = modelresponsi.readaccount();
+        		for(int i =0 ; i<modelresponsi.getBanyakData2();i++) {
+        			if(dataAnggota[i][0].equals(username)) {
+        				valid=false;
+        			}
+        			System.out.print(dataAnggota[i][0]+" "+viewresponsi.getuname());
+        			
+        		}
+        		if(viewresponsi.getuname().equals("")||viewresponsi.getpass().equals(""))JOptionPane.showMessageDialog(null, "Jangan dikosongin GBLK!!!");
+        		else if(valid==false) JOptionPane.showMessageDialog(null, "Pasaran nama lu anying");
+        		else modelresponsi.daftar(username, password);
         	}
         });
         
@@ -93,11 +113,18 @@ public class ControllerResponsi {
         viewresponsi.jbtambah.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+            	boolean valid=true;
+            	if(viewresponsi.getIdanggota().equals("")) valid=false;
+            	if(viewresponsi.getNama().equals("")) valid=false;
+            	if(viewresponsi.getIdbuku().equals("")) valid=false;
+            	if(viewresponsi.getJudulbuku().equals("")) valid=false;
+            	
                 String idanggota = viewresponsi.getIdanggota();
                 String nama = viewresponsi.getNama();
                 String idbuku = viewresponsi.getIdbuku();
                 String judulbuku = viewresponsi.getJudulbuku();
-                modelresponsi.create(idanggota, nama, idbuku, judulbuku);
+                if(valid==true)modelresponsi.create(idanggota, nama, idbuku, judulbuku);
+                else JOptionPane.showMessageDialog(null, "Jangan ada yang dikosongin GBLK!!!");
                 
                 String dataMahasiswa[][] = modelresponsi.read();
                 viewresponsi.tabel.setModel(new JTable(dataMahasiswa, viewresponsi.namaKolom).getModel());
@@ -153,29 +180,34 @@ public class ControllerResponsi {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mousePressed(e);
-                int baris = viewresponsi.tabel.getSelectedRow();
-                
-                final String dataterpilih = viewresponsi.tabel.getValueAt(baris, 0).toString();
-
-                System.out.println(dataterpilih);
-
+                mastervariable=0;
                 viewresponsi.jbhapus.setEnabled(true);
                 viewresponsi.jbedit.setEnabled(true);
-                System.out.print(dataterpilih);
+                
                 viewresponsi.jbhapus.addActionListener(new ActionListener() {
+                	int baris = viewresponsi.tabel.getSelectedRow();
+                    String dataterpilih = viewresponsi.tabel.getValueAt(baris, 0).toString();
                 	public void actionPerformed(ActionEvent e) {
-            			modelresponsi.delete(dataterpilih);
-                        String dataAnggota[][] = modelresponsi.read();
+                		if(mastervariable!=1)modelresponsi.delete(dataterpilih);
+            			mastervariable=1;
+            			String dataAnggota[][] = modelresponsi.read();
                         viewresponsi.tabel.setModel(new JTable(dataAnggota, viewresponsi.namaKolom).getModel());
                         viewresponsi.jbhapus.setEnabled(false);
                         viewresponsi.jbedit.setEnabled(false);
                         //WTF?!?!?!?!?
-                        //Look, 
+                        //Look, it kept looping! I don't know what's going on!!! Sometimes it works sometimes it doesn't
+                        //THIS PIECE OF CODE IS BULLSHIT!!!!!!!
+                        //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                        
                 	}
                 });
+               
                 
                 viewresponsi.jbedit.addActionListener(new ActionListener() {
+                	int baris = viewresponsi.tabel.getSelectedRow();
+                    String dataterpilih = viewresponsi.tabel.getValueAt(baris, 0).toString();
                 	public void actionPerformed(ActionEvent e) {
+                		
                 		//Haus, mau ngopi, gua yang 10 menit kedepan, bikin panel baru buat edit data peminjam
                 		//Masukan kedalam panel tampil jangan bareng yang lain 
                 		//Mager masukin kedalem panel tampil, udah pisahin aja biar gak ribet
@@ -189,17 +221,29 @@ public class ControllerResponsi {
         );
         
         
+
         //TOMBOL EDITSSSSS
         viewresponsi.jbeditdata.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
+        		boolean valid=true;
+        		if(viewresponsi.geteditIdanggota().equals("")) valid=false;
+            	if(viewresponsi.geteditNama().equals("")) valid=false;
+            	if(viewresponsi.geteditIdbuku().equals("")) valid=false;
+            	if(viewresponsi.geteditJudulbuku().equals("")) valid=false;
+        		
                 String idanggota = viewresponsi.geteditIdanggota();
                 String nama = viewresponsi.geteditNama();
                 String idbuku = viewresponsi.geteditIdbuku();
                 String judulbuku = viewresponsi.geteditJudulbuku();
-                modelresponsi.update(idanggota, nama, idbuku, judulbuku);
+                
+                
+                if(valid==true)modelresponsi.update(idanggota, nama, idbuku, judulbuku);
+                else JOptionPane.showMessageDialog(null, "Jangan ada yang dikosongin GBLK!!!");
                 String dataAnggota[][] = modelresponsi.read();
                 viewresponsi.tabel.setModel(new JTable(dataAnggota, viewresponsi.namaKolom).getModel());
                 viewresponsi.paneledit.setVisible(false);
+                
+                
             }
         });
         

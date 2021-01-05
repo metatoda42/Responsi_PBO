@@ -20,6 +20,7 @@ import java.sql.Statement;
 
 import javax.swing.JOptionPane;
 
+
 public class ModelResponsi {
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 
@@ -226,11 +227,12 @@ public class ModelResponsi {
             statement = koneksi.createStatement();
             statement.executeUpdate(query);
             JOptionPane.showMessageDialog(null, "Berhasil Dihapus");
-            
+                       
             
         }catch(SQLException sql) {
             System.out.println(sql.getMessage());
         }
     }
+    
     
 }
