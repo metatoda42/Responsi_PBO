@@ -11,6 +11,7 @@ package responsi_mvc;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.Color;
 
 
 
@@ -97,6 +98,7 @@ public class ViewResponsi extends JFrame {
         setVisible(true);
         getContentPane().setLayout(null);
         setSize(500, 450);
+        paneledit.setBackground(Color.YELLOW);
         
         //HALAMAN EDIT
         
@@ -129,6 +131,7 @@ public class ViewResponsi extends JFrame {
         paneledit.setBounds(121, 0, 363, 411);
         tabel = new JTable(dtm);
         scrollPane = new JScrollPane(tabel);
+        paneltampil.setBackground(Color.RED);
         paneltampil.setBounds(121, 0, 363, 411);
         getContentPane().add(paneltampil);
         paneltampil.setLayout(null);
@@ -141,6 +144,7 @@ public class ViewResponsi extends JFrame {
         jbedit.setEnabled(false);
         paneltampil.add(jbedit);
         jbedit.setBounds(237,11,82,18);
+        paneltambah.setBackground(Color.PINK);
         
         
         //HALAMAN TAMBAH
@@ -170,6 +174,7 @@ public class ViewResponsi extends JFrame {
         jbbatal.setBounds(219, 153, 80, 23);
         paneltambah.add(jbbatal);
         paneltambah.setBounds(121, 0, 363, 411);
+        panelhome.setBackground(Color.ORANGE);
         
         
         
@@ -177,15 +182,21 @@ public class ViewResponsi extends JFrame {
         //HALAMAN MENU
         getContentPane().add(panelhome);
         panelhome.setLayout(null);
+        jbhome.setForeground(Color.BLACK);
+        jbhome.setBackground(Color.CYAN);
         panelhome.add(jbhome);
         jbhome.setBounds(0, 30, 114, 57);
+        jbpinjam.setBackground(Color.CYAN);
         panelhome.add(jbpinjam);
         jbpinjam.setBounds(0, 98, 114, 57);
+        jbaboutus.setBackground(Color.CYAN);
         panelhome.add(jbaboutus);
         jbaboutus.setBounds(0, 166, 114, 57);
+        jbtampil.setBackground(Color.CYAN);
         jbtampil.setBounds(0, 234, 114, 57);
         panelhome.add(jbtampil);
         panelhome.setBounds(0, 0, 124, 411);
+        paneltitle.setBackground(Color.GREEN);
         
         
         
@@ -197,6 +208,7 @@ public class ViewResponsi extends JFrame {
         jltitle.setBounds(32, 68, 286, 150);
         paneltitle.add(jltitle);
         paneltitle.setBounds(123, 0, 351, 411);
+        panelabout.setBackground(Color.CYAN);
         
         //JUDUL MENU
         
@@ -207,6 +219,7 @@ public class ViewResponsi extends JFrame {
         jlabout.setBounds(32, 68, 286, 150);
         panelabout.add(jlabout);
         panelabout.setBounds(123, 0, 351, 411);
+        panellogin.setBackground(Color.YELLOW);
         
         
         
