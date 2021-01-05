@@ -34,6 +34,7 @@ public class ModelResponsi {
            
            
            String query = "Select * from transactions WHERE MemberId=" + memberid; 
+           
            ResultSet resultSet = statement.executeQuery(query);
            
            while (resultSet.next()){ 
@@ -63,7 +64,8 @@ public class ModelResponsi {
         try {
            
            
-           String query = "Select * from accounts WHERE Username=" + username;
+           String query = "Select * from accounts WHERE Username='" + username+"'";
+           statement = (Statement) koneksi.createStatement();
            ResultSet resultSet = statement.executeQuery(query);
            
            while (resultSet.next()){ 
