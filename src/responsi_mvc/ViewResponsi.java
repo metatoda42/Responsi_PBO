@@ -15,6 +15,9 @@ public class ViewResponsi extends JFrame {
     JPanel paneltitle = new JPanel();
     JPanel paneltambah = new JPanel();
     JPanel paneltampil = new JPanel();
+    JPanel paneledit = new JPanel();
+    
+    
     
 	//LOGIN PAGE declaration
 	JLabel jlid = new JLabel("Username : ");
@@ -32,7 +35,7 @@ public class ViewResponsi extends JFrame {
     JButton jbtampil = new JButton("Tampil");
     JButton jbaboutus = new JButton("About Us");
     JButton jbexit = new JButton("EXIT");
-    JLabel jltitle = new JLabel ("Selamat Datang di Perpustakaan Pandu Ganteng!!!");
+    JLabel jltitle = new JLabel ("Selamat Datang di Perpustakaan "+getuname() +"!!!");
     
     
     //TAMBAH PAGE declaration
@@ -58,6 +61,20 @@ public class ViewResponsi extends JFrame {
     JButton jbhapus = new JButton("Hapus");
     JButton jbedit = new JButton("Edit");
     
+    //EDIT PAGE declaration
+    JLabel jleditidanggota = new JLabel("ID Anggota: ");
+    JLabel jleditnama = new JLabel("Nama: ");
+    JLabel jleditidbuku = new JLabel("ID Buku: ");
+    JLabel jleditjudulbuku = new JLabel("Judul Buku: ");
+    
+    JTextField jteditidanggota = new JTextField();
+    JTextField jteditnama = new JTextField();
+    JTextField jteditidbuku = new JTextField();
+    JTextField jteditjudulbuku = new JTextField();
+    
+    JButton jbeditdata = new JButton("Edit");
+    JButton jbbataledit = new JButton("Batal");
+    
     
 	public ViewResponsi() {
 		
@@ -82,6 +99,8 @@ public class ViewResponsi extends JFrame {
         jbhapus.setBounds(0,0,0,0);
         paneltampil.add(jbedit);
         jbedit.setBounds(0,0,0,0);
+        
+        
         //HALAMAN TAMBAH
         
         getContentPane().add(paneltambah);
@@ -110,6 +129,34 @@ public class ViewResponsi extends JFrame {
         paneltambah.add(jbbatal);
         paneltambah.setBounds(121, 0, 363, 411);
         
+        //HALAMAN EDIT
+        
+        getContentPane().add(paneledit);
+        paneledit.setLayout(null);
+        
+        
+        paneledit.add(jleditidanggota);
+        jleditidanggota.setBounds(41,53,68,14);
+        paneledit.add(jleditnama);
+        jleditnama.setBounds(41,78,68,14);
+        paneledit.add(jleditidbuku);
+        jleditidbuku.setBounds(41,103,68,14);
+        paneledit.add(jleditjudulbuku);
+        jleditjudulbuku.setBounds(41,128,68,14);
+        
+        paneledit.add(jteditidanggota);
+        jteditidanggota.setBounds(119,53,180,14);
+        paneledit.add(jteditnama);
+        jteditnama.setBounds(119,78,180,14);
+        paneledit.add(jteditidbuku);
+        jteditidbuku.setBounds(119,103,180,14);
+        paneledit.add(jteditjudulbuku);
+        jteditjudulbuku.setBounds(119,128,180,14);
+        jbeditdata.setBounds(119, 153, 80, 23);
+        paneledit.add(jbeditdata);
+        jbbataledit.setBounds(219, 153, 80, 23);
+        paneledit.add(jbbataledit);
+        paneledit.setBounds(121, 0, 363, 411);
         
         
         
@@ -163,8 +210,8 @@ public class ViewResponsi extends JFrame {
         
         //SAMBUNGAN KE KONTROL SEMOGA BEKERJA tapi masih WIP :P
         //Eh, ternyata gak kepake, tapi biarin disini aja deh, buat pajangan
-      //  if(control==1)panellogin.setVisible(true);
-      //  if(control==2)panelhome.setVisible(true);
+        //  if(control==1)panellogin.setVisible(true);
+        //  if(control==2)panelhome.setVisible(true);
         
         
 		
@@ -184,5 +231,28 @@ public class ViewResponsi extends JFrame {
     public String getJudulbuku() {
     	return jtjudulbuku.getText();
     }
-
+    
+    public String geteditIdanggota(){
+        return jteditidanggota.getText();
+    }
+    
+    public String geteditNama(){
+        return jteditnama.getText();
+    }
+    
+    public String geteditIdbuku(){
+        return jteditidbuku.getText();
+    }
+    public String geteditJudulbuku() {
+    	return jteditjudulbuku.getText();
+    }
+    public String getuname() {
+    	return jtid.getText();
+    }
+    @SuppressWarnings("deprecation")
+	public String getpass() {
+    	return jtpass.getText();
+    }
+    
+    
 }

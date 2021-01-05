@@ -20,10 +20,11 @@ public class ControllerResponsi {
         viewresponsi.paneltitle.setVisible(false);
         viewresponsi.paneltambah.setVisible(false);
         viewresponsi.paneltampil.setVisible(false);
+        viewresponsi.paneledit.setVisible(false);
         
         if (modelresponsi.getBanyakData() != 0) {
-            String dataMahasiswa[][] = modelresponsi.read();
-            viewresponsi.tabel.setModel((new JTable(dataMahasiswa, viewresponsi.namaKolom)).getModel());
+            String data[][] = modelresponsi.read();
+            viewresponsi.tabel.setModel((new JTable(data, viewresponsi.namaKolom)).getModel());
         } else {
             JOptionPane.showMessageDialog(null, "Data Tidak Ada");
         }
@@ -32,7 +33,24 @@ public class ControllerResponsi {
         
         viewresponsi.jblogin.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		
+        		boolean valid = false;
+        		String username = viewresponsi.getuname();
+        		String password = viewresponsi.getpass();
+        		String dataAnggota[][] = modelresponsi.readaccount();
+        		for(int i =0 ; i<modelresponsi.getBanyakData2();i++) {
+        			if(dataAnggota[i][0].equals(username)) {
+        				if(dataAnggota[i][1].equals(password)) {
+        					valid=true;
+        				}
+        			}
+        			System.out.print(dataAnggota[i][0]+" "+viewresponsi.getuname());
+        			
+        		}
+        		if(valid == true) {
+        			viewresponsi.panelhome.setVisible(true);
+        			viewresponsi.paneltitle.setVisible(true);
+        			viewresponsi.panellogin.setVisible(false);
+        		}
         	}
         });
         
@@ -122,17 +140,29 @@ public class ControllerResponsi {
                 
                 viewresponsi.jbedit.addActionListener(new ActionListener() {
                 	public void actionPerformed(ActionEvent e) {
-                		viewresponsi.paneltitle.setVisible(false);
-                		viewresponsi.paneltambah.setVisible(true);
-                		viewresponsi.paneltampil.setVisible(false);
                 		//Haus mau minum+ngopi, gua yang 10 menit kedepan, bikin panel baru buat edit data peminjam
                 		//Masukan kedalam panel tampil jangan bareng yang lain 
+                		//Mager masukin kedalem panel tampil, udah pisahin aja biar gak ribet
+                		viewresponsi.paneledit.setVisible(true);
                 	}
                 });
                 
             }
         }
         );
+        
+        
+        //TOMBOL EDITSSSSS
+        viewresponsi.jbeditdata.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+                String idanggota = viewresponsi.geteditIdanggota();
+                String nama = viewresponsi.geteditNama();
+                String idbuku = viewresponsi.geteditIdbuku();
+                String judulbuku = viewresponsi.geteditJudulbuku();
+                modelresponsi.update(idanggota, nama, idbuku, judulbuku);
+                viewresponsi.paneledit.setVisible(false);
+            }
+        });
         
         
 	}

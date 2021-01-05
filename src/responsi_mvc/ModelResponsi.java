@@ -60,6 +60,27 @@ public class ModelResponsi {
     
     //READ READ READ READ READ READ READ READ READ READ READ
     
+    public String[][] readaccount(){
+    	try {
+    		int jmlData = 0;
+            
+            String data[][] = new String[getBanyakData2()][2];
+            
+            String query = "Select * from accounts"; 
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()){
+                data[jmlData][0] = resultSet.getString("Username"); //harus sesuai nama kolom di mysql
+                data[jmlData][1] = resultSet.getString("Password");                
+                jmlData++;
+            }return data;
+    	}
+    	catch(SQLException e){
+    		System.out.println(e.getMessage());
+            System.out.println("SQL Error");
+            return null;
+    	}
+    }
+    
     public String[][] read(){
         try{
             int jmlData = 0;
@@ -89,6 +110,24 @@ public class ModelResponsi {
         try{
             statement = koneksi.createStatement();
             String query = "Select * from transactions";
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()){ 
+                jmlData++;
+            }
+            return jmlData;
+            
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+            System.out.println("SQL Error");
+            return 0;
+        }
+    }
+    
+    public int getBanyakData2(){
+        int jmlData = 0;
+        try{
+            statement = koneksi.createStatement();
+            String query = "Select * from accounts";
             ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()){ 
                 jmlData++;
