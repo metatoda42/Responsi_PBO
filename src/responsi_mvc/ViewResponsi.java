@@ -1,6 +1,8 @@
 /*
- * Straight up vibin with the Takodachis while doing this one...
+ * You cannot live with your own failure...
+ * Where did that take you?
  * 
+ * System.out.println("Back To Me...");
  * 
  * */
 
