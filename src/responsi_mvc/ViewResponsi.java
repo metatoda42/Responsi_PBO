@@ -79,8 +79,6 @@ public class ViewResponsi extends JFrame {
 	public ViewResponsi() {
 		
 		dtm = new DefaultTableModel(namaKolom, 0);
-        tabel = new JTable(dtm);
-        scrollPane = new JScrollPane(tabel);
         
         
         setTitle("Perpustakaan Keren Pandu Ganteng");
@@ -89,16 +87,49 @@ public class ViewResponsi extends JFrame {
         getContentPane().setLayout(null);
         setSize(500, 450);
         
-        //HALAMAN TAMPIL
+        //HALAMAN EDIT
+        
+        getContentPane().add(paneledit);
+        paneledit.setLayout(null);
+        
+        
+        paneledit.add(jleditidanggota);
+        jleditidanggota.setBounds(41,53,68,14);
+        paneledit.add(jleditnama);
+        jleditnama.setBounds(41,78,68,14);
+        paneledit.add(jleditidbuku);
+        jleditidbuku.setBounds(41,103,68,14);
+        paneledit.add(jleditjudulbuku);
+        jleditjudulbuku.setBounds(41,128,68,14);
+        jteditidanggota.setEditable(false);
+        
+        paneledit.add(jteditidanggota);
+        jteditidanggota.setBounds(119,53,180,14);
+        paneledit.add(jteditnama);
+        jteditnama.setBounds(119,78,180,14);
+        paneledit.add(jteditidbuku);
+        jteditidbuku.setBounds(119,103,180,14);
+        paneledit.add(jteditjudulbuku);
+        jteditjudulbuku.setBounds(119,128,180,14);
+        jbeditdata.setBounds(119, 153, 80, 23);
+        paneledit.add(jbeditdata);
+        jbbataledit.setBounds(219, 153, 80, 23);
+        paneledit.add(jbbataledit);
+        paneledit.setBounds(121, 0, 363, 411);
+        tabel = new JTable(dtm);
+        scrollPane = new JScrollPane(tabel);
+        paneltampil.setBounds(121, 0, 363, 411);
         getContentPane().add(paneltampil);
         paneltampil.setLayout(null);
         
         paneltampil.add(scrollPane);
-        scrollPane.setBounds(0,0,0,0);
+        scrollPane.setBounds(10,40,343,360);
+        jbhapus.setEnabled(false);
         paneltampil.add(jbhapus);
-        jbhapus.setBounds(0,0,0,0);
+        jbhapus.setBounds(32,11,82,18);
+        jbedit.setEnabled(false);
         paneltampil.add(jbedit);
-        jbedit.setBounds(0,0,0,0);
+        jbedit.setBounds(237,11,82,18);
         
         
         //HALAMAN TAMBAH
@@ -128,35 +159,6 @@ public class ViewResponsi extends JFrame {
         jbbatal.setBounds(219, 153, 80, 23);
         paneltambah.add(jbbatal);
         paneltambah.setBounds(121, 0, 363, 411);
-        
-        //HALAMAN EDIT
-        
-        getContentPane().add(paneledit);
-        paneledit.setLayout(null);
-        
-        
-        paneledit.add(jleditidanggota);
-        jleditidanggota.setBounds(41,53,68,14);
-        paneledit.add(jleditnama);
-        jleditnama.setBounds(41,78,68,14);
-        paneledit.add(jleditidbuku);
-        jleditidbuku.setBounds(41,103,68,14);
-        paneledit.add(jleditjudulbuku);
-        jleditjudulbuku.setBounds(41,128,68,14);
-        
-        paneledit.add(jteditidanggota);
-        jteditidanggota.setBounds(119,53,180,14);
-        paneledit.add(jteditnama);
-        jteditnama.setBounds(119,78,180,14);
-        paneledit.add(jteditidbuku);
-        jteditidbuku.setBounds(119,103,180,14);
-        paneledit.add(jteditjudulbuku);
-        jteditjudulbuku.setBounds(119,128,180,14);
-        jbeditdata.setBounds(119, 153, 80, 23);
-        paneledit.add(jbeditdata);
-        jbbataledit.setBounds(219, 153, 80, 23);
-        paneledit.add(jbbataledit);
-        paneledit.setBounds(121, 0, 363, 411);
         
         
         

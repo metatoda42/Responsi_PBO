@@ -8,6 +8,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
+
 public class ControllerResponsi {
 	ModelResponsi modelresponsi;
 	ViewResponsi viewresponsi;
@@ -56,7 +57,9 @@ public class ControllerResponsi {
         
         viewresponsi.jbdaftar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		
+        		String username = viewresponsi.getuname();
+        		String password = viewresponsi.getpass();
+        		modelresponsi.daftar(username, password);
         	}
         });
         
@@ -64,7 +67,14 @@ public class ControllerResponsi {
         
         viewresponsi.jbbatal.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		
+        		viewresponsi.jtidanggota.setText("");
+        	    viewresponsi.jtnama.setText("");
+        	    viewresponsi.jtidbuku.setText("");
+        	    viewresponsi.jtjudulbuku.setText("");
+        	    viewresponsi.paneltitle.setVisible(true);
+        		viewresponsi.paneltambah.setVisible(false);
+        		viewresponsi.paneltampil.setVisible(false);
+        	    
         	}
         });
         
@@ -134,7 +144,8 @@ public class ControllerResponsi {
                         modelresponsi.delete(dataterpilih);
                         String dataAnggota[][] = modelresponsi.read();
                         viewresponsi.tabel.setModel(new JTable(dataAnggota, viewresponsi.namaKolom).getModel());
-                        
+                        viewresponsi.jbhapus.setEnabled(false);
+                        viewresponsi.jbedit.setEnabled(false);
                 	}
                 });
                 
@@ -143,6 +154,7 @@ public class ControllerResponsi {
                 		//Haus mau minum+ngopi, gua yang 10 menit kedepan, bikin panel baru buat edit data peminjam
                 		//Masukan kedalam panel tampil jangan bareng yang lain 
                 		//Mager masukin kedalem panel tampil, udah pisahin aja biar gak ribet
+                		viewresponsi.jteditidanggota.setText(dataterpilih);
                 		viewresponsi.paneledit.setVisible(true);
                 	}
                 });
@@ -160,6 +172,8 @@ public class ControllerResponsi {
                 String idbuku = viewresponsi.geteditIdbuku();
                 String judulbuku = viewresponsi.geteditJudulbuku();
                 modelresponsi.update(idanggota, nama, idbuku, judulbuku);
+                String dataAnggota[][] = modelresponsi.read();
+                viewresponsi.tabel.setModel(new JTable(dataAnggota, viewresponsi.namaKolom).getModel());
                 viewresponsi.paneledit.setVisible(false);
             }
         });

@@ -58,6 +58,37 @@ public class ModelResponsi {
         }
     }
     
+    public void daftar(String username, String password) {
+    	int jmlData=0;
+        try {
+           
+           
+           String query = "Select * from accounts WHERE Username=" + username;
+           ResultSet resultSet = statement.executeQuery(query);
+           
+           while (resultSet.next()){ 
+        	   System.out.print("sampe sini juga");
+                jmlData++;
+            }
+           
+           
+            if (jmlData==0) {
+                query = "INSERT INTO accounts(Username, Password) VALUES ('"+username+"','"+password+"')";
+           
+                statement = (Statement) koneksi.createStatement();
+                statement.executeUpdate(query); //execute querynya
+                System.out.println("Berhasil ditambahkan");
+                JOptionPane.showMessageDialog(null, "Data Berhasil ditambahkan");
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "Data sudah ada");
+            }
+        } catch (Exception sql) {
+            System.out.println(sql.getMessage()+"Nyampe sini mas bro");   
+            JOptionPane.showMessageDialog(null, sql.getMessage());
+        }
+    }
+    
     //READ READ READ READ READ READ READ READ READ READ READ
     
     public String[][] readaccount(){
@@ -171,6 +202,7 @@ public class ModelResponsi {
         }
     }
     
+
     
     //DELETE DELETE DELETE DELETE DELETE DELETE DELETE DELETE
     
