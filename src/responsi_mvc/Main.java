@@ -6,7 +6,7 @@ package responsi_mvc;
  * Then you try again,
  * But the compiler said no.
  * So you tried again...
- * But the compiler said no.
+ * But the compiler said no
  * 
  * You know what you do? In this predicament? When your code doesn't work?
  * 
